@@ -1,17 +1,17 @@
 rpc_url = "https://eth-mainnet.public.blastapi.io"
-max_rate_increment_bps = 100000
-max_rate_decrement_bps = 10000
+max_rate_increment_bps = 2000
+max_rate_decrement_bps = 2000
 ibc_transfer_threshold_amt = "0xa"
 rate_scaling_factor = "1000000000000"
-authorizations = "0x752d93d8fe256bc9ad54a237af59a9cc4aa47d22"
-processor = "0xa100310be2a8c6918091bce82d9e1f95aa7ea8e7"
+authorizations = "0xe947c12eb58f1a6c0b0450866231196684b759b3"
+processor = "0xf11fb794fe78a125b5b1adbd798f820230cb1f95"
 
 [denoms]
 deposit_token = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
 
 [accounts]
-deposit = "0x774b3a37315fd1a9730a8f6b39017ed268d21478"
+deposit = "0x3044be3a3114fb27cb2734de2b739ada974314ad"
 
 [libraries]
-one_way_vault = "0x78ced4c73c9ddb23661eafb403f94d30b5265970"
-cctp_transfer = "0xe8b8fcc88563c77d856830ceec05fbb71902d6fb"
+one_way_vault = "0xabcd1639a6c6cb17bf7f9cee9fa1b08d3338a19b"
+cctp_transfer = "0x9cb231752f8a26952ec7b0eec157691f978815d4"
