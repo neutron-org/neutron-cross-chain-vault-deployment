@@ -20,10 +20,10 @@ max_rate_update_delay    = 129600                                       # 36 hou
 
 [eureka_transfer]
 handler                    = "0xfc2d0487a0ae42ae7329a80dc269916a9184cf7c"
-recipient                  = "cosmos1la3vuk7f6f9drugc5skmmwj8y9rsrvfcc4fgyc33vy8mv7cqadfqfqalll"
+recipient                  = "cosmos10yrura0a9m6s5u6655w6scw3zkqzstamzmzujwt0qhxuxp0rqucq9knnhp"
 source_client              = "cosmoshub-0"
 timeout                    = 43200                                                               # 12 hours in seconds
 ibc_transfer_threshold_amt = 8928571
 
 [coprocessor_app]
-eureka_transfer_coprocessor_app_id = "b0f3a9da6e3e4b7bcc4d82d41f673962cefa3599c2872b871a1bf88ea140b7bc" # TBD after we have the app deployed
+eureka_transfer_coprocessor_app_id = "66e6e5d807adbecf537ab0e6fe731db296060a2505965506ebeeef990014b8d1" # TBD after we have the app deployed

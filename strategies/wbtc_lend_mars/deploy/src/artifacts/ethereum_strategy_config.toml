@@ -3,18 +3,18 @@ max_rate_increment_bps = 100
 max_rate_decrement_bps = 100
 ibc_transfer_threshold_amt = "0x883d3b"
 rate_scaling_factor = "10000000000"
-authorizations = "0xf86b22939e37a168aa322d64556aebe919daf857"
-processor = "0xb6d479bdb972193ee943969a29817770f371dc9c"
+authorizations = "0xd0a83325974733b20a2f6992b4bcb9cc919bebf7"
+processor = "0x16b5d8d1efdb76d483410a62a9990798e08e4130"
 
 [denoms]
 deposit_token = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
 
 [accounts]
-deposit = "0xf5ad86774c4f979ed020277367aea72d239ae002"
+deposit = "0x598bbb598459053f0cd12bd6fcbc6c0965e98d8e"
 
 [libraries]
-one_way_vault = "0x116c702b60a49e7f3641eb147abd1153424275ea"
-eureka_transfer = "0x9a5a1aeff400f3e8cfdbfa1ab35cd2d755fd23b0"
+one_way_vault = "0xb7ad61807677683d516e69b0e283d9398593a99e"
+eureka_transfer = "0xaf8b034d958d7b988810cabef315fba970e55e16"
 
 [coprocessor_app_ids]
-ibc_eureka = "b0f3a9da6e3e4b7bcc4d82d41f673962cefa3599c2872b871a1bf88ea140b7bc"
+ibc_eureka = "66e6e5d807adbecf537ab0e6fe731db296060a2505965506ebeeef990014b8d1"

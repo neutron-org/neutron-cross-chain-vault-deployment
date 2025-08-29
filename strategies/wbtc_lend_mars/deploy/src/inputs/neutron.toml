@@ -17,4 +17,4 @@ deposit_token_on_neutron_denom = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27C
 mars_credit_manager            = "neutron1qdzn3l4kn7gsjna2tfpg3g3mwd6kunx4p50lfya59k02846xas6qslgs3r"                 # Need to figure this out, not sure if this one
 
 [coprocessor_app]
-clearing_queue_coprocessor_app_id = "6ec08064121a3217ffacf4596008fe7bac151bd117c9f4361e425d9eb910e183"
+clearing_queue_coprocessor_app_id = "cd30c4633d5465e6aa67423efb09f3c89073102b1d1a0b0b6a853d0f7713dcba"
