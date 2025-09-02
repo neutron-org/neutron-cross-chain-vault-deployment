@@ -2,8 +2,8 @@ grpc_url = "http://grpc-xyphion.neutron-1.neutron.org"
 grpc_port = "80"
 chain_id = "neutron-1"
 supervault = "neutron1tamvnzeq9e4w6leav38htqutz4ht8jhm8ujp6s3sfsg9yu69kqeq7ygf9a"
-authorizations = "neutron1fx7gpeed0h3y9w983kty7jp84qx4lqlmh0pzcz7aywg7nr59g7vqjl2hsn"
-processor = "neutron1u5peg6zd87sjg5frfrst4s696t7dwcdml4pmenxelqvc32gfvmus673fvj"
+authorizations = "neutron15j2yzvy0ph9f0f6mwdz9k89mu6k9xveaemyrs5my8zvvxulz969q3kh23h"
+processor = "neutron13f84z3dzlg0vpxlg356lhyfl6kzmulutq3yy3kysjlz2gavhf57q6ekh27"
 
 [denoms]
 deposit_token = "ibc/B559A80D62249C8AA07A380E2A2BEA6E5CA9A6F079C912C3A9E9B494105E4F81"
@@ -11,12 +11,12 @@ ntrn = "untrn"
 supervault_lp = "factory/neutron1tamvnzeq9e4w6leav38htqutz4ht8jhm8ujp6s3sfsg9yu69kqeq7ygf9a/BTC-USDC"
 
 [accounts]
-deposit = "neutron1npx5g6ksgu6hxp7q7a0e5r4te05d5hn7ldd6adr8mfn39z9jhnaslcelsu"
-settlement = "neutron1wvlwsa3hl3zcu9ks23gnnn7u3fl9jtmz7wadckgz32ssnym6m2xspkercf"
+deposit = "neutron1lmcmcr3808eu5plc8xa750ktv7nlypntzs87kntgw3gwkymt5urspd3asa"
+settlement = "neutron1r80a30lzwjeqlu0ckyxyazt3h82a55zet8ukgku4svsknnq3d8tq3z26t3"
 
 [libraries]
-supervault_lper = "neutron1gj4h2rv3mysngj6kzwhyn5yvc5tvmpv7tlq8j9cavg2cfz8mdu3qqaac7l"
-clearing_queue = "neutron14fla37g806ty3jz3tmmfgutee0we3tcvcs5zhd8axppvpev6gvrseu42yv"
+supervault_lper = "neutron1rha4ps5twhrartg2vv7gg60nyn6h58y5630xwnma0n7hfyqmtsyqqcalz7"
+clearing_queue = "neutron1m5lj7fgxwj0zcht8g9jpnqql590tcxmkskjvz25j4n507va3n2cqgmyaz2"
 
 [coprocessor_app_ids]
-clearing_queue = "919c2d9063536ac2060239612eb52d6d5b8ab86b6f053c19402efee318e6faf1"
+clearing_queue = "dcdaa5527682fe9b501c7449d70ebe39860eade33ee512e0cc51b69bb739e644"
