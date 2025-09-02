@@ -13,7 +13,7 @@ use valence_coprocessor::Witness;
 // Currently fee is 0.20$ which translates currently to 193. So we'll set a ceiling of 10 times that.
 const MAX_FEE_ALLOWED: u64 = 1930;
 // The library this will be executed on:
-const EUREKA_TRANSFER_LIBRARY_CONTRACT: &str = "0x204a9dea1d82f59a9a7d44f1732611b383d6a83b";
+const EUREKA_TRANSFER_LIBRARY_CONTRACT: &str = "0xd4e100a7b3cbb1a3fc3cfdd60ead55b445ee95fc";
 
 /// Main circuit function for token transfer validation
 pub fn circuit(witnesses: Vec<Witness>) -> Vec<u8> {

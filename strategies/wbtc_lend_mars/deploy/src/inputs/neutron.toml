@@ -2,8 +2,8 @@
 grpc_url = "http://rpc.neutron.quokkastake.io"
 grpc_port = "9090"
 chain_id = "neutron-1"
-owner = "neutron17w0xj03v3jj7tj8uz998ga6he93ytxggnrf8zr"      # Should be Neutron multisig
-strategist = "neutron17w0xj03v3jj7tj8uz998ga6he93ytxggnrf8zr" # Should be strategist address
+owner = "neutron1h2lzp88kjk24sf7jfyrpd27xzfp52qerwvyxx2ds23pwavhz72asrpacva"      # Should be Neutron multisig
+strategist = "neutron19vgu57lvg0er54ykvrll7jgjj3lzd90tegmczr" # Should be strategist address
 
 [ica]
 deposit_token_on_hub_denom = "ibc/D742E8566B0B8CC8F569D950051C09CF57988A88F0E45574BFB3079D41DE6462" # WBTC
@@ -17,4 +17,4 @@ deposit_token_on_neutron_denom = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27C
 mars_credit_manager            = "neutron1qdzn3l4kn7gsjna2tfpg3g3mwd6kunx4p50lfya59k02846xas6qslgs3r"                 # Need to figure this out, not sure if this one
 
 [coprocessor_app]
-clearing_queue_coprocessor_app_id = "cd30c4633d5465e6aa67423efb09f3c89073102b1d1a0b0b6a853d0f7713dcba"
+clearing_queue_coprocessor_app_id = "54792928ea1b4480d29e805113c7b185b5a80c3728ee8401537630471e687a72"
