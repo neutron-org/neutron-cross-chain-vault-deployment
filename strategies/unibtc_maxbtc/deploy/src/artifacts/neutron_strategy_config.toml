@@ -1,0 +1,32 @@
+grpc_url = "http://grpc-xyphion.neutron-1.neutron.org"
+grpc_port = "80"
+chain_id = "neutron-1"
+mars_credit_manager = "neutron1et4xza4pge3asumk8yxdx6qm85k9eplk0kathtkheln6znxsqheqfytsza"
+supervault = "neutron19v7gd733gjuh8h5v7vfxh4kqmhjzpcfe8u6uwrr55zsf9605ccmqch9kv2"
+authorizations = "neutron1q2e5ah08ck5qp8rvwlwystfnq0ju8s90eckd2nw0y857tnrds5rqdasxsw"
+processor = "neutron1s335dlyunlzud4hvs79ajprcnn623qdtnfudzuuyudsnj0rvm50sgpanq5"
+
+[denoms]
+deposit_token = "ibc/3F1D988D9EEA19EB0F3950B4C19664218031D8BCE68CE7DE30F187D5ACEA0463"
+ntrn = "untrn"
+supervault_lp = "factory/neutron19v7gd733gjuh8h5v7vfxh4kqmhjzpcfe8u6uwrr55zsf9605ccmqch9kv2/BTC-BTC"
+
+[accounts]
+gaia_ica = "neutron182e0t88eklh7j5s8qugy7m252h390dydl7t7znn94tf3dmt8w7kszlg9tf"
+deposit = "neutron147fnfvnl0299xu8ms7k5d3uhj9shl90aumczcm7ugcdg7l2wkskqhrpt2f"
+mars_deposit = "neutron148nvk8ppxdy4420g8afa3csn8ale2waed82mhcqq0cta35et6t2qde8u9v"
+supervault_deposit = "neutron1dhlslmnjyh2lgxdxw3cd7q6ptz3efrchs4ktuh0kt7wmar0788aqcv93em"
+settlement = "neutron19qhr82v9gd60hf77ufy3430jv3d5jlr7msytwh6n7dgcsm0k0l0q5jf5ym"
+
+[libraries]
+deposit_splitter = "neutron1alpurxkswkecmppv40cdcyfpp2wnk62dl654pnu07s3g9h7ugrxqr9jt0x"
+mars_lending = "neutron1fplumz39mt523z2qepneq3ltga8gwypunwy9yl63emsqjujq5wssse4hfn"
+supervault_lper = "neutron1gavh48km5w20zya6nggp96hwxuvgegap4xkjntw9q5r9x8yeu8ts90v7wd"
+clearing_queue = "neutron1nnepa8r5axrrdav29axgmtzn4png20l3lmzvupjtsd6tck46eumqxrfg4s"
+ica_transfer_gaia = "neutron1aer0ae7p4qnn03lunpesc2vk68za8gnu2fx8jull8j2vh646vnzq8a7pva"
+phase_shift_maxbtc_issuer = "neutron1n8gkcdtph7n9df42kghpcv3s2e8thaznapxazqqxsd0n9mxqyjtszzfwz6"
+phase_shift_forwarder = "neutron10nsu7zflnk9c396uqsmuyzjxqznqg4f7u8t3pth6at3xtznp6xyqtmckg6"
+phase_shift_supervault_withdrawer = "neutron1um3cckmch4nvlz6kwu6g7ullfuanz6y6p9z4arzra7l54hhjhpgsgadvjn"
+
+[coprocessor_app_ids]
+clearing_queue = "af4584fdfc626e356f1dd45e0ef75b58c3b2188d2e8146d495a20f7da573a791"
