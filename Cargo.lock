@@ -2020,7 +2020,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -2197,7 +2197,7 @@ dependencies = [
  "serde_json",
  "syn 2.0.104",
  "tempfile",
- "toml",
+ "toml 0.8.23",
 ]
 
 [[package]]
@@ -2228,7 +2228,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -5213,7 +5213,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -5339,7 +5339,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -6287,7 +6287,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
  "valence-domain-clients",
@@ -7777,6 +7777,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde_spanned"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "40734c41988f7306bb04f0ecf60ec0f3f1caa34290e4e8ea471dcd3346483b83"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "serde_urlencoded"
 version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -7961,6 +7970,82 @@ checksum = "233504af464074f9d066d7b5416c5f9b894a5862a6506e306f7b816cdd6f1807"
 dependencies = [
  "libc",
  "windows-sys 0.59.0",
+]
+
+[[package]]
+name = "solvbtc_maxbtc_deploy"
+version = "0.1.0"
+dependencies = [
+ "alloy",
+ "anyhow",
+ "bincode 1.3.3",
+ "cosmrs",
+ "cosmwasm-std",
+ "dotenv",
+ "hex",
+ "packages",
+ "serde",
+ "solvbtc_maxbtc_types",
+ "sp1-sdk",
+ "tokio",
+ "toml 0.9.5",
+ "valence-account-utils",
+ "valence-authorization-utils",
+ "valence-clearing-queue-supervaults",
+ "valence-domain-clients",
+ "valence-dynamic-ratio-query-provider",
+ "valence-forwarder-library",
+ "valence-ica-ibc-transfer",
+ "valence-library-utils",
+ "valence-mars-lending",
+ "valence-maxbtc-issuer",
+ "valence-processor-utils",
+ "valence-splitter-library",
+ "valence-supervaults-lper",
+ "valence-supervaults-withdrawer",
+]
+
+[[package]]
+name = "solvbtc_maxbtc_strategist"
+version = "0.1.0"
+dependencies = [
+ "alloy",
+ "anyhow",
+ "async-trait",
+ "cosmwasm-std",
+ "dotenv",
+ "env_logger",
+ "hex",
+ "log",
+ "mmvault 2.0.0 (git+https://github.com/neutron-org/slinky-vault?rev=3a2537c846731b4752bdbee84eeb562e71273438)",
+ "packages",
+ "serde",
+ "serde_json",
+ "solvbtc_maxbtc_types",
+ "tokio",
+ "valence-account-utils",
+ "valence-authorization-utils",
+ "valence-clearing-queue-supervaults",
+ "valence-domain-clients",
+ "valence-forwarder-library",
+ "valence-ica-ibc-transfer",
+ "valence-lending-utils",
+ "valence-library-utils",
+ "valence-mars-lending",
+ "valence-processor-utils",
+ "valence-splitter-library",
+ "valence-strategist-utils",
+ "valence-supervaults-lper",
+]
+
+[[package]]
+name = "solvbtc_maxbtc_types"
+version = "0.1.0"
+dependencies = [
+ "alloy",
+ "cosmwasm-std",
+ "serde",
+ "valence-strategist-utils",
 ]
 
 [[package]]
@@ -8741,7 +8826,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tendermint",
- "toml",
+ "toml 0.8.23",
  "url",
 ]
 
@@ -9102,9 +9187,24 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc1beb996b9d83529a9e75c17a1686767d148d70663143c7854d8b4a09ced362"
 dependencies = [
  "serde",
- "serde_spanned",
- "toml_datetime",
+ "serde_spanned 0.6.9",
+ "toml_datetime 0.6.11",
  "toml_edit 0.22.27",
+]
+
+[[package]]
+name = "toml"
+version = "0.9.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "75129e1dc5000bfbaa9fee9d1b21f974f9fbad9daec557a521ee6e080825f6e8"
+dependencies = [
+ "indexmap 2.10.0",
+ "serde",
+ "serde_spanned 1.0.0",
+ "toml_datetime 0.7.0",
+ "toml_parser",
+ "toml_writer",
+ "winnow 0.7.12",
 ]
 
 [[package]]
@@ -9117,13 +9217,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "toml_datetime"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bade1c3e902f58d73d3f294cd7f20391c1cb2fbcb643b73566bc773971df91e3"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "toml_edit"
 version = "0.19.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1b5bb770da30e5cbfde35a2d7b9b8a2c4b8ef89548a7a6aeab5c9a576e3e7421"
 dependencies = [
  "indexmap 2.10.0",
- "toml_datetime",
+ "toml_datetime 0.6.11",
  "winnow 0.5.40",
 ]
 
@@ -9135,9 +9244,18 @@ checksum = "41fe8c660ae4257887cf66394862d21dbca4a6ddd26f04a3560410406a2f819a"
 dependencies = [
  "indexmap 2.10.0",
  "serde",
- "serde_spanned",
- "toml_datetime",
+ "serde_spanned 0.6.9",
+ "toml_datetime 0.6.11",
  "toml_write",
+ "winnow 0.7.12",
+]
+
+[[package]]
+name = "toml_parser"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b551886f449aa90d4fe2bdaa9f4a2577ad2dde302c61ecf262d80b116db95c10"
+dependencies = [
  "winnow 0.7.12",
 ]
 
@@ -9146,6 +9264,12 @@ name = "toml_write"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d99f8c9a7727884afe522e9bd5edbfc91a3312b36a77b5fb8926e4c31a41801"
+
+[[package]]
+name = "toml_writer"
+version = "1.0.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fcc842091f2def52017664b53082ecbbeb5c7731092bad69d2c63050401dfd64"
 
 [[package]]
 name = "tonic"
@@ -9459,7 +9583,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "unibtc_maxbtc_types",
  "valence-account-utils",
  "valence-authorization-utils",
@@ -9583,7 +9707,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "usdc_types",
  "valence-account-utils",
  "valence-authorization-utils",
@@ -10054,7 +10178,7 @@ dependencies = [
  "serde",
  "serde_json",
  "tokio",
- "toml",
+ "toml 0.8.23",
 ]
 
 [[package]]
@@ -10276,7 +10400,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -10309,7 +10433,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -10386,7 +10510,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -10414,7 +10538,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -10527,7 +10651,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
@@ -10646,7 +10770,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",

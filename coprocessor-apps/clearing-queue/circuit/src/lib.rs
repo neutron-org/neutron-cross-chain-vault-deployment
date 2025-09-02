@@ -17,9 +17,9 @@ use valence_clearing_queue_supervaults::msg::{FunctionMsgs, LibraryConfigUpdate}
 use valence_coprocessor::Witness;
 use valence_library_utils::{LibraryAccountType, msg::ExecuteMsg};
 
-const SCALE_FACTOR: u128 = 100000000;
+const SCALE_FACTOR: u128 = 1000000000000000000;
 const CLEARING_QUEUE_LIBRARY_ADDRESS: &str =
-    "neutron1nnepa8r5axrrdav29axgmtzn4png20l3lmzvupjtsd6tck46eumqxrfg4s";
+    "neutron1ute8dlw354zg7j02aq336ww9pgg0ezk8je43zchwu7dr5j9hwdkquc3q8z";
 
 pub fn circuit(witnesses: Vec<Witness>) -> Vec<u8> {
     let state_proof = witnesses[0].as_state_proof().unwrap();

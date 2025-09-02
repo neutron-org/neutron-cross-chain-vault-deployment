@@ -34,6 +34,9 @@ members = [
   "strategies/unibtc_maxbtc/deploy",
   "strategies/unibtc_maxbtc/strategist",
   "strategies/unibtc_maxbtc/types",
+  "strategies/solvbtc_maxbtc/deploy",
+  "strategies/solvbtc_maxbtc/strategist",
+  "strategies/solvbtc_maxbtc/types",
   "strategies/maxbtc_mint/deploy",
   "strategies/maxbtc_mint/strategist",
   "strategies/maxbtc_mint/types",
@@ -63,7 +66,7 @@ mmvault                    = { git = "https://github.com/neutron-org/slinky-vaul
 sp1-sdk                    = { version = "5.0.0", default-features = false }
 bincode                    = "1.3.3"
 anyhow                     = { version = "1", default-features = false }
-toml                       = "0.8"
+toml                       = "0.9.5"
 log                        = { version = "0.4.22" }
 multi_log                  = "0.1.2"
 opentelemetry_sdk          = "0.30.0"
