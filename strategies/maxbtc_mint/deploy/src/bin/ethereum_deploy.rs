@@ -83,8 +83,12 @@ async fn main() -> anyhow::Result<()> {
     let rp = eth_client.get_request_provider().await?;
 
     let deposit_account_tx =
-        BaseAccount::deploy_builder(&rp, eth_client.signer().address(), vec![])
-            .into_transaction_request();
+        BaseAccount::deploy_builder(
+            &rp,
+            my_address, // We will be initial owners to eventually add the authorizations, then we need to transfer ownership
+            vec![]
+        )
+        .into_transaction_request();
 
     let deposit_account = eth_client
         .sign_and_send(deposit_account_tx)
@@ -112,7 +116,6 @@ async fn main() -> anyhow::Result<()> {
     let kyc_one_way_vault_config = KYCOneWayVaultConfig {
         depositAccount: deposit_account,
         strategist: parameters.vault.strategist,
-        wrapper,
         depositFeeBps: parameters.vault.deposit_fee_bps,
         withdrawFeeBps: parameters.vault.withdraw_fee_bps,
         maxRateIncrementBps: parameters.vault.max_rate_increment_bps,
@@ -152,12 +155,14 @@ async fn main() -> anyhow::Result<()> {
             "Neutron-XChain-Vault".to_string(), // vault token name
             "nVault".to_string(),               // vault token symbol
             parameters.vault.starting_rate,
+            wrapper,
         )
         .into_transaction_request();
     eth_client.sign_and_send(initialize_tx).await?;
     println!("Vault initialized");
 
-    let configure_wrapper_tx = WrapperContract::new(wrapper, &rp)
+    let wrapper_contract = WrapperContract::new(wrapper, &rp);
+    let configure_wrapper_tx = wrapper_contract
         .setConfig(
             proxy,
             parameters.wrapper.zk_me,
@@ -167,6 +172,12 @@ async fn main() -> anyhow::Result<()> {
         .into_transaction_request();
     eth_client.sign_and_send(configure_wrapper_tx).await?;
     println!("Wrapper configured");
+
+    let transfer_wrapper_ownership_tx = wrapper_contract
+        .transferOwnership(parameters.general.owner)
+        .into_transaction_request();
+    eth_client.sign_and_send(transfer_wrapper_ownership_tx).await?;
+    println!("Wrapper ownership transferred");
 
     let processor =
         LiteProcessor::deploy_builder(&rp, FixedBytes::<32>::default(), Address::ZERO, 0, vec![])

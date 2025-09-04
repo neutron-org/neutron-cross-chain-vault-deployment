@@ -47,6 +47,7 @@ sol!(
 );
 
 sol!(
+    #[allow(clippy::too_many_arguments)]
     #[sol(rpc)]
     #[derive(Debug, PartialEq, Eq)]
     KYCOneWayVault,
