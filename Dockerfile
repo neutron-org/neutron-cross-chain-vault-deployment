@@ -14,6 +14,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN cargo build
+RUN ls -1 strategies | xargs -I "{}" cargo build -p {}_strategist --bin runner
 
 ENTRYPOINT ["just"]
