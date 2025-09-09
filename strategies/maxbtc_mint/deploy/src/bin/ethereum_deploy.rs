@@ -38,7 +38,6 @@ struct Parameters {
 struct Wrapper {
     zk_me: Address,
     cooperator: Address,
-    withdraws_enabled: bool,
 }
 
 #[derive(Deserialize, Debug)]
@@ -82,13 +81,12 @@ async fn main() -> anyhow::Result<()> {
     let my_address = eth_client.signer().address();
     let rp = eth_client.get_request_provider().await?;
 
-    let deposit_account_tx =
-        BaseAccount::deploy_builder(
-            &rp,
-            my_address, // We will be initial owners to eventually add the authorizations, then we need to transfer ownership
-            vec![]
-        )
-        .into_transaction_request();
+    let deposit_account_tx = BaseAccount::deploy_builder(
+        &rp,
+        my_address, // We will be initial owners to eventually add the authorizations, then we need to transfer ownership
+        vec![],
+    )
+    .into_transaction_request();
 
     let deposit_account = eth_client
         .sign_and_send(deposit_account_tx)
@@ -97,15 +95,30 @@ async fn main() -> anyhow::Result<()> {
         .unwrap();
     println!("Deposit account deployed at: {deposit_account}");
 
-    let wrapper_tx = WrapperContract::deploy_builder(&rp, eth_client.signer().address())
-        .into_transaction_request();
+    let wrapper_implementation_tx = WrapperContract::deploy_builder(&rp).into_transaction_request();
 
-    let wrapper = eth_client
-        .sign_and_send(wrapper_tx)
+    let wrapper_implementation = eth_client
+        .sign_and_send(wrapper_implementation_tx)
         .await?
         .contract_address
         .unwrap();
-    println!("Wrapper deployed at: {wrapper}");
+
+    let wrapper_proxy_tx = ERC1967Proxy::deploy_builder(&rp, wrapper_implementation, Bytes::new())
+        .into_transaction_request();
+
+    let wrapper_proxy = eth_client
+        .sign_and_send(wrapper_proxy_tx)
+        .await?
+        .contract_address
+        .unwrap();
+
+    println!("Wrapper deployed at: {wrapper_proxy}");
+
+    let wrapper = WrapperContract::new(wrapper_proxy, &rp);
+
+    let wrapper_initialize_tx = wrapper.initialize(my_address).into_transaction_request();
+    eth_client.sign_and_send(wrapper_initialize_tx).await?;
+    println!("Wrapper initialized!");
 
     let fee_distribution_config = FeeDistributionConfig {
         strategistAccount: parameters.vault.strategist_fee_account,
@@ -126,28 +139,28 @@ async fn main() -> anyhow::Result<()> {
         feeDistribution: fee_distribution_config,
     };
 
-    let implementation_tx = KYCOneWayVault::deploy_builder(&rp).into_transaction_request();
+    let vault_implementation_tx = KYCOneWayVault::deploy_builder(&rp).into_transaction_request();
 
-    let implementation = eth_client
-        .sign_and_send(implementation_tx)
+    let vault_implementation = eth_client
+        .sign_and_send(vault_implementation_tx)
         .await?
         .contract_address
         .unwrap();
 
-    let proxy_tx =
-        ERC1967Proxy::deploy_builder(&rp, implementation, Bytes::new()).into_transaction_request();
+    let vault_proxy_tx = ERC1967Proxy::deploy_builder(&rp, vault_implementation, Bytes::new())
+        .into_transaction_request();
 
-    let proxy = eth_client
-        .sign_and_send(proxy_tx)
+    let vault_proxy = eth_client
+        .sign_and_send(vault_proxy_tx)
         .await?
         .contract_address
         .unwrap();
 
-    println!("Vault deployed at: {proxy}");
+    println!("Vault deployed at: {vault_proxy}");
 
-    let vault = KYCOneWayVault::new(proxy, &rp);
+    let vault = KYCOneWayVault::new(vault_proxy, &rp);
 
-    let initialize_tx = vault
+    let vault_initialize_tx = vault
         .initialize(
             parameters.general.owner,
             kyc_one_way_vault_config.abi_encode().into(),
@@ -155,28 +168,28 @@ async fn main() -> anyhow::Result<()> {
             "Neutron-XChain-Vault".to_string(), // vault token name
             "nVault".to_string(),               // vault token symbol
             parameters.vault.starting_rate,
-            wrapper,
+            wrapper_proxy,
         )
         .into_transaction_request();
-    eth_client.sign_and_send(initialize_tx).await?;
+    eth_client.sign_and_send(vault_initialize_tx).await?;
     println!("Vault initialized");
 
-    let wrapper_contract = WrapperContract::new(wrapper, &rp);
-    let configure_wrapper_tx = wrapper_contract
+    let configure_wrapper_tx = wrapper
         .setConfig(
-            proxy,
+            vault_proxy,
             parameters.wrapper.zk_me,
             parameters.wrapper.cooperator,
-            parameters.wrapper.withdraws_enabled,
         )
         .into_transaction_request();
     eth_client.sign_and_send(configure_wrapper_tx).await?;
     println!("Wrapper configured");
 
-    let transfer_wrapper_ownership_tx = wrapper_contract
+    let transfer_wrapper_ownership_tx = wrapper
         .transferOwnership(parameters.general.owner)
         .into_transaction_request();
-    eth_client.sign_and_send(transfer_wrapper_ownership_tx).await?;
+    eth_client
+        .sign_and_send(transfer_wrapper_ownership_tx)
+        .await?;
     println!("Wrapper ownership transferred");
 
     let processor =
@@ -268,8 +281,8 @@ async fn main() -> anyhow::Result<()> {
     };
 
     let libraries = EthereumLibraries {
-        wrapper,
-        one_way_vault: proxy,
+        wrapper: wrapper_proxy,
+        one_way_vault: vault_proxy,
         eureka_transfer,
     };
 
