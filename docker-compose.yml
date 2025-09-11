@@ -9,6 +9,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-usdc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-wbtc-unibtc:
@@ -19,6 +20,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-unibtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-wbtc-solvbtc:
@@ -29,6 +31,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-solvbtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-wbtc-ebtc:
@@ -39,6 +42,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-ebtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-solvbtc-maxbtc:
@@ -49,6 +53,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-solvbtc-maxbtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-unibtc-maxbtc:
@@ -59,6 +64,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-unibtc-maxbtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-ebtc-maxbtc:
@@ -69,6 +75,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-ebtc-maxbtc
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-wbtc-lend-amber:
@@ -79,6 +86,7 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-lend-amber
     extra_hosts:
       - "host.docker.internal:host-gateway"
   strategy-wbtc-lend-mars:
@@ -89,5 +97,6 @@ services:
     working_dir: /app
     environment:
       - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-lend-mars
     extra_hosts:
       - "host.docker.internal:host-gateway"
