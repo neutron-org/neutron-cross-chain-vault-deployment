@@ -1,7 +1,7 @@
 rpc_url = "https://lb.drpc.org/ethereum/Al7xsCWHm0Xqs1nzDoLIoTDVjOBrjvYR8IwyzltYSRe_"
 max_rate_increment_bps = 200
 max_rate_decrement_bps = 200
-ibc_transfer_threshold_amt = "0x989680"
+ibc_transfer_threshold_amt = "0x186A0"
 rate_scaling_factor = "10000000000"
 authorizations = "0xf2fe9bbcddc150de801fdc4df6f2ca85ac25dd05"
 processor = "0xf0fde27488232e9572532bdc1fb6c1157ad804eb"
