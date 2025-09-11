@@ -1,0 +1,21 @@
+rpc_url = "https://lb.drpc.org/ethereum/Al7xsCWHm0Xqs1nzDoLIoTDVjOBrjvYR8IwyzltYSRe_"
+max_rate_increment_bps = 200
+max_rate_decrement_bps = 200
+ibc_transfer_threshold_amt = "0x989680"
+rate_scaling_factor = "10000000000"
+authorizations = "0xf2fe9bbcddc150de801fdc4df6f2ca85ac25dd05"
+processor = "0xf0fde27488232e9572532bdc1fb6c1157ad804eb"
+
+[denoms]
+deposit_token = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
+
+[accounts]
+deposit = "0x45c2fd5643acaba0d1698f6f1a2c9b51e88b7bcf"
+
+[libraries]
+wrapper = "0xcb70c346f105841b44fd992ad74ba210c8f1b1e8"
+one_way_vault = "0x119e4c0e9ccec2684233e139e3260057f57547f3"
+eureka_transfer = "0x16d1677b0301a7b2e195766cdb49e6fc613a9193"
+
+[coprocessor_app_ids]
+ibc_eureka = "8cac6b5af434158509074d08a97a6e71979bec2cb1374808d0bd113db50cbc75"

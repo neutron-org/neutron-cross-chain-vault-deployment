@@ -1,0 +1,24 @@
+grpc_url = "http://rpc.neutron.quokkastake.io"
+grpc_port = "9090"
+chain_id = "neutron-1"
+maxbtc_contract = "neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5xp34"
+authorizations = "neutron1m9f8n8j4cg6gqqu2d9g4n0g48jgctfv7ry6a8v7j7dpy5sd3ygssa54qq0"
+processor = "neutron1453kxlw3s8rk595elyds0kuayrd4cvdc2mw2jv2xqvvfxg09lukq6gldgj"
+
+[denoms]
+deposit_token = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27CA3AB44D0590603DFF6968E"
+ntrn = "untrn"
+maxbtc = "factory/neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5xp34/maxbtc"
+
+[accounts]
+gaia_ica = "neutron1euvgpgjl2j4pyemypse2mk7wv09jzt03ycs2a3kwdp28z35y6hgqtpjsqv"
+deposit = "neutron1ka2cr3e0et8tmlcpvr5nfz6fazma4a2vhgu7tdrk2fx8z2zcqewq0a83c6"
+settlement = "neutron1w533k0gxcqtejacg3j7ff7rhnak8mywn4uaysrz20qudw3td6t0qet2stj"
+
+[libraries]
+maxbtc_issuer = "neutron17gzzgt4awke4navqs6tyfjlhknt94ksfua9m66kdk5phy2y8rapqtudd0p"
+clearing_queue = "neutron1vl7l6c5w37ld9jtyyh9e9c52lt902e5kv3rtmuaupadqezk29mwqkmwwpj"
+ica_transfer_gaia = "neutron1zukgkcg4kds9x2394pgl6h6qw5sxagukhmm3gx5d5encfedqredqze2wey"
+
+[coprocessor_app_ids]
+clearing_queue = "087cfc8fdf09697964ca3c6e610c7f8d3027616b39b53a36bb40d1b8aa1e6711"

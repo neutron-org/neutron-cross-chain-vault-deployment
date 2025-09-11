@@ -1,5 +1,5 @@
 [general]
-rpc_url = "https://eth-mainnet.public.blastapi.io"
+rpc_url = "https://lb.drpc.org/ethereum/Al7xsCWHm0Xqs1nzDoLIoTDVjOBrjvYR8IwyzltYSRe_"
 owner   = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Neutron multisig address
 
 [wrapper]
@@ -30,4 +30,4 @@ timeout                    = 43200                                        # 12 h
 ibc_transfer_threshold_amt = 10000000
 
 [coprocessor_app]
-eureka_transfer_coprocessor_app_id = "" # TBD after deployment
+eureka_transfer_coprocessor_app_id = "8cac6b5af434158509074d08a97a6e71979bec2cb1374808d0bd113db50cbc75" # TBD after deployment

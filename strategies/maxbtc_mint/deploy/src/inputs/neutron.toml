@@ -18,4 +18,4 @@ maxbtc_contract = "neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa
 maxbtc_denom = "factory/neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5xp34/maxbtc" # Should be real maxBTC denom on Neutron
 
 [coprocessor_app]
-clearing_queue_coprocessor_app_id = "" # TBD after deployment
+clearing_queue_coprocessor_app_id = "087cfc8fdf09697964ca3c6e610c7f8d3027616b39b53a36bb40d1b8aa1e6711" # TBD after deployment
