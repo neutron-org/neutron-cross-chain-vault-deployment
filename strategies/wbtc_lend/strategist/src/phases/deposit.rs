@@ -238,6 +238,13 @@ impl Strategy {
                 valence_ica_ibc_transfer::msg::FunctionMsgs::Transfer {},
             );
 
+        info!(target: DEPOSIT_PHASE, "ensuring ica_ibc_transfer library has enough funds to pay fees");
+        valence_core::ensure_neutron_account_fees_coverage(
+            &self.neutron_client,
+            &self.cfg.neutron.accounts.ica,
+        )
+            .await?;
+
         info!(target: DEPOSIT_PHASE, "enqueuing ica_ibc_transfer library update & transfer");
         valence_core::enqueue_neutron(
             &self.neutron_client,
