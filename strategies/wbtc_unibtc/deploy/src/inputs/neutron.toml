@@ -1,0 +1,29 @@
+[general]
+grpc_url = "http://grpc-xyphion.neutron-1.neutron.org"
+grpc_port = "80"
+chain_id   = "neutron-1"
+owner      = "neutron1h2lzp88kjk24sf7jfyrpd27xzfp52qerwvyxx2ds23pwavhz72asrpacva" # Should be Neutron multisig
+strategist = "neutron1r9vj3rrv3q7996jkprfj4d2svg8dl46p9qqhjd" # Should be strategist address
+
+[ica]
+deposit_token_on_hub_denom = "ibc/D742E8566B0B8CC8F569D950051C09CF57988A88F0E45574BFB3079D41DE6462" # WBTC
+channel_id                 = "channel-569"                                                          # Hub -> Neutron channel
+ibc_transfer_timeout       = 600                                                                    # 10 minutes
+connection_id              = "connection-0"                                                         # Neutron -> Hub connection
+ica_timeout                = 43200                                                                  # 12 hours in seconds - Large value recommended: https://docs.neutron.org/neutron/modules/interchain-txs/messages
+
+[program]
+deposit_token_on_neutron_denom = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27CA3AB44D0590603DFF6968E" # wBTC on Neutron
+mars_credit_manager = "neutron1et4xza4pge3asumk8yxdx6qm85k9eplk0kathtkheln6znxsqheqfytsza" # Amber Credit Manager address
+supervault = "neutron1704tmu9nvgk0l8xmpua0su6dq3r89mht0adlx8gxte695qapstks6lzmma"
+supervault_asset1 = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27CA3AB44D0590603DFF6968E" # wBTC
+supervault_asset2 = "ibc/3F1D988D9EEA19EB0F3950B4C19664218031D8BCE68CE7DE30F187D5ACEA0463" # uniBTC
+supervault_lp_denom = "factory/neutron1704tmu9nvgk0l8xmpua0su6dq3r89mht0adlx8gxte695qapstks6lzmma/BTC-BTC"
+initial_split_percentage_to_mars = 70
+initial_split_percentage_to_supervault = 30
+# How much will be settled from Mars vs Supervaults from the clearing queue. Important to point out that this value is for
+# Mars, so we if we put 70 here, it means 70% of the clearing queue will be settled to Mars and 30% to Supervaults.
+initial_settlement_ratio_percentage = 70
+
+[coprocessor_app]
+clearing_queue_coprocessor_app_id = "a65b09a8d03871e8875f6e7849526a01fe3293e1d4c173bb228f37f36f131e02" # TBD after deployment

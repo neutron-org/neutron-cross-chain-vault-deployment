@@ -2,7 +2,7 @@
 
 extern crate alloc;
 
-pub const VAULT_ADDRESS: &str = "0x9fe5b9c7ddbd26d0dc93634e15eb1a5d34c85493";
+pub const VAULT_ADDRESS: &str = "0x821b6a88eb6c2ccde24104760e8167afdc81ad50";
 
 mod proof;
 mod types;

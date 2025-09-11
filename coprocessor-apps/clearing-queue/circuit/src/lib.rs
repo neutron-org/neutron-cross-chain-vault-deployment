@@ -19,7 +19,7 @@ use valence_library_utils::{LibraryAccountType, msg::ExecuteMsg};
 
 const SCALE_FACTOR: u128 = 100000000;
 const CLEARING_QUEUE_LIBRARY_ADDRESS: &str =
-    "neutron1pdp6mty3ykchjxksj9hakupma3atyrah27mtws3ph2matjkhg7qse70m8g";
+    "neutron1hkvq0f984x53qsptlje6v038tmpm8tg6y27fvf64fxqerkkvht9sffnc0l";
 
 pub fn circuit(witnesses: Vec<Witness>) -> Vec<u8> {
     let state_proof = witnesses[0].as_state_proof().unwrap();
