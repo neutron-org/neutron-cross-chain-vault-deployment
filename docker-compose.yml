@@ -100,3 +100,14 @@ services:
       - SERVICE_NAME=strategy-wbtc-lend-mars
     extra_hosts:
       - "host.docker.internal:host-gateway"
+  strategy-wbtc-maxbtc-mint-only:
+    build: .
+    container_name: strategy-wbtc-maxbtc-mint-only
+    command: start maxbtc_mit
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-maxbtc-mint-only
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
