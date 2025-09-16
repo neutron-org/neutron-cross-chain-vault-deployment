@@ -27,17 +27,9 @@ use valence_domain_clients::{
 #[derive(Deserialize, Debug)]
 struct Parameters {
     general: General,
-    wrapper: Wrapper,
     vault: Vault,
     eureka_transfer: EurekaTransfer,
     coprocessor_app: EurekaTransferCoprocessorApp,
-}
-
-#[derive(Deserialize, Debug)]
-struct Wrapper {
-    zk_me: Address,
-    cooperator: Address,
-    withdraws_enabled: bool,
 }
 
 #[derive(Deserialize, Debug)]
@@ -97,16 +89,6 @@ async fn main() -> anyhow::Result<()> {
         .unwrap();
     println!("Deposit account deployed at: {deposit_account}");
 
-    let wrapper_tx = WrapperContract::deploy_builder(&rp, eth_client.signer().address())
-        .into_transaction_request();
-
-    let wrapper = eth_client
-        .sign_and_send(wrapper_tx)
-        .await?
-        .contract_address
-        .unwrap();
-    println!("Wrapper deployed at: {wrapper}");
-
     let fee_distribution_config = FeeDistributionConfig {
         strategistAccount: parameters.vault.strategist_fee_account,
         platformAccount: parameters.vault.platform_fee_account,
@@ -116,7 +98,6 @@ async fn main() -> anyhow::Result<()> {
     let kyc_one_way_vault_config = KYCOneWayVaultConfig {
         depositAccount: deposit_account,
         strategist: parameters.vault.strategist,
-        wrapper,
         depositFeeBps: parameters.vault.deposit_fee_bps,
         withdrawFeeBps: parameters.vault.withdraw_fee_bps,
         maxRateIncrementBps: parameters.vault.max_rate_increment_bps,
@@ -162,9 +143,7 @@ async fn main() -> anyhow::Result<()> {
     println!("Vault initialized");
 
     // Wait until vault really is initilized
-    eth_client
-        .blocking_query(vault.owner(), |resp| (resp._0 == my_address), 10, 10)
-        .await?;
+    eth_client.blocking_query(vault.owner(), |resp|(resp._0 == my_address), 10, 10).await?;
 
     let vault_kyc_configure_tx = vault
         .updateZkMeConfig(parameters.vault.zk_me, parameters.vault.cooperator)
