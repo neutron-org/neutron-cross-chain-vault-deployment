@@ -197,6 +197,8 @@ async fn main() -> anyhow::Result<()> {
         .await?
         .address;
 
+    println!("Predicted valence ICA address: {predicted_valence_ica_address}");
+
     // Instantiate the ICA ibc transfer library
     let config = valence_ica_ibc_transfer::msg::LibraryConfig {
         input_addr: LibraryAccountType::Addr(predicted_valence_ica_address.clone()),
@@ -212,6 +214,8 @@ async fn main() -> anyhow::Result<()> {
         denom_to_pfm_map: BTreeMap::new(),
         eureka_config: None,
     };
+
+    println!("Valence config: {:?}", config);
 
     let instantiate_ica_ibc_transfer_msg = valence_library_utils::msg::InstantiateMsg::<
         valence_ica_ibc_transfer::msg::LibraryConfig,
