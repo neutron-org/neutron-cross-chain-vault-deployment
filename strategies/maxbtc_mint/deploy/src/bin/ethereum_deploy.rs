@@ -142,6 +142,9 @@ async fn main() -> anyhow::Result<()> {
     eth_client.sign_and_send(vault_initialize_tx).await?;
     println!("Vault initialized");
 
+    // Wait until vault really is initilized
+    eth_client.blocking_query(vault.owner(), |resp|(resp._0 == my_address), 10, 10).await?;
+
     let vault_kyc_configure_tx = vault
         .updateZkMeConfig(parameters.vault.zk_me, parameters.vault.cooperator)
         .into_transaction_request();
