@@ -9843,12 +9843,13 @@ dependencies = [
 
 [[package]]
 name = "valence-coprocessor"
-version = "0.4.5"
-source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.5#1657c855c1f8231f0647b20fd130f308a31b0acd"
+version = "0.4.7"
+source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.7#fbfd406dbf3d7681ba5f358ad0280f504f9f35bc"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
  "buf-fs",
+ "const-hex",
  "hashbrown 0.15.5",
  "msgpacker",
  "serde",
@@ -9861,8 +9862,8 @@ dependencies = [
 
 [[package]]
 name = "valence-coprocessor-ethereum"
-version = "1.1.3"
-source = "git+https://github.com/timewave-computer/valence-coprocessor-ethereum?tag=v1.1.3#f75a6069242a39bc5df8ff6c9c5db685a43c5386"
+version = "1.1.8"
+source = "git+https://github.com/timewave-computer/valence-coprocessor-ethereum?tag=v1.1.8#3c0632ace6e2e268ad1a9d7e0bb1e45b2d58a5c6"
 dependencies = [
  "alloy-primitives 0.8.25",
  "alloy-rlp",
@@ -9881,8 +9882,8 @@ dependencies = [
 
 [[package]]
 name = "valence-coprocessor-merkle"
-version = "0.4.5"
-source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.5#1657c855c1f8231f0647b20fd130f308a31b0acd"
+version = "0.4.7"
+source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.7#fbfd406dbf3d7681ba5f358ad0280f504f9f35bc"
 dependencies = [
  "anyhow",
  "hex",
@@ -9894,8 +9895,8 @@ dependencies = [
 
 [[package]]
 name = "valence-coprocessor-types"
-version = "0.4.5"
-source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.5#1657c855c1f8231f0647b20fd130f308a31b0acd"
+version = "0.4.7"
+source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.7#fbfd406dbf3d7681ba5f358ad0280f504f9f35bc"
 dependencies = [
  "anyhow",
  "base64 0.22.1",
@@ -9908,8 +9909,8 @@ dependencies = [
 
 [[package]]
 name = "valence-coprocessor-wasm"
-version = "0.4.5"
-source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.5#1657c855c1f8231f0647b20fd130f308a31b0acd"
+version = "0.4.7"
+source = "git+https://github.com/timewave-computer/valence-coprocessor.git?tag=v0.4.7#fbfd406dbf3d7681ba5f358ad0280f504f9f35bc"
 dependencies = [
  "anyhow",
  "lru 0.14.0",

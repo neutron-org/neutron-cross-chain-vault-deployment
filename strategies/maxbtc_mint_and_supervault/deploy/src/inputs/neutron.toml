@@ -22,5 +22,5 @@ supervault_asset2               = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27
 supervault_lp_denom             = "factory/neutron1r8qcd94anqhrfzmjyppk45pew5kzedrxz8mgk82kmwadqyndvwtstp9yrn/BTC-BTC"
 
 [coprocessor_app]
-clearing_queue_coprocessor_app_id = "0f429349d63494575de4fc687e0c192ea0883ff96f1af0b82c627cdbaf44a7b6" # TBD after deployment
+clearing_queue_coprocessor_app_id = "8df0ca532a93a899bd22018578784050a2923e8bbf5cf82a96620a3a710b2a05" # TBD after deployment
 
