@@ -1,7 +1,7 @@
 rpc_url = "https://eth-mainnet.public.blastapi.io"
 max_rate_increment_bps = 200
 max_rate_decrement_bps = 200
-ibc_transfer_threshold_amt = "0x186CC6ACD4B0000"
+ibc_transfer_threshold_amt = "0x19606406AE6DB"
 rate_scaling_factor = "1"
 authorizations = "0x38a183046717bcba32d7b137ae3699dedd9c548c"
 processor = "0xc79c207733c0d189e0e51e625310e5e18d4af588"
@@ -17,4 +17,4 @@ one_way_vault = "0x03397fec419ea8461aa63b6f293c4ea1e6ea5c86"
 eureka_transfer = "0x3e7ba64ca45adfaa9b27de7b722856ef98963e37"
 
 [coprocessor_app_ids]
-ibc_eureka = "2b5667433e4d1ce4b6b362ac122f3676360cc99045c510e5747ac9b4adbca31d"
+ibc_eureka = "dcfd8adf6eb6587c08bc88c18d8dea9f0ced363f02df802bcd6b42136e475e03"

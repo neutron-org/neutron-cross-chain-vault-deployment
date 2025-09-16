@@ -26,4 +26,4 @@ timeout                    = 43200                                        # 12 h
 ibc_transfer_threshold_amt = 110000000000000000                                   # $10000 in solvBTC
 
 [coprocessor_app]
-eureka_transfer_coprocessor_app_id = "2b5667433e4d1ce4b6b362ac122f3676360cc99045c510e5747ac9b4adbca31d" # TBD after deployment
+eureka_transfer_coprocessor_app_id = "dcfd8adf6eb6587c08bc88c18d8dea9f0ced363f02df802bcd6b42136e475e03" # TBD after deployment
