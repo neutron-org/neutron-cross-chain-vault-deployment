@@ -18,12 +18,6 @@ sol!(
     "src/contracts/evm/ERC20.sol/ERC20.json",
 );
 
-sol!(
-    #[sol(rpc)]
-    Wrapper,
-    "src/contracts/evm/Wrapper.sol/Wrapper.json",
-);
-
 // Need to use a module to avoid name conflicts with Authorization
 pub mod processor_contract {
     alloy::sol!(
@@ -47,7 +41,6 @@ sol!(
 );
 
 sol!(
-    #[allow(clippy::too_many_arguments)]
     #[sol(rpc)]
     #[derive(Debug, PartialEq, Eq)]
     KYCOneWayVault,
