@@ -2,6 +2,11 @@
 rpc_url = "https://lb.drpc.org/ethereum/Al7xsCWHm0Xqs1nzDoLIoTDVjOBrjvYR8IwyzltYSRe_"
 owner   = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Neutron multisig address
 
+[wrapper]
+zk_me                    = "0x399488687fc3618FFaf1f5d0f61397c8E0360c02" # Should be updated to correct ZkMe Verify & Certify contract address
+cooperator               = "0x3f4b2F33e5488796cBA66C6b1E9f1934031656Fd" # Should be updated to correct cooperator provided from ZkMe
+withdraws_enabled        = false
+
 [vault]
 deposit_token            = "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599" # Should be updated to correct deposit token address (e.g. WBTC)
 strategist               = "0x0EDF77a1036598Da1C0Aab471066a0c4FFd099D1" # Address of the strategist

@@ -10,7 +10,8 @@ const LOGGING: &str = "logging";
 
 pub async fn setup_logging() -> anyhow::Result<()> {
     // Read service name from environment variable (fall back to "neutron-strategist")
-    let service_name = env::var("SERVICE_NAME").unwrap_or_else(|_| "neutron-strategist".to_string());
+    let service_name =
+        env::var("SERVICE_NAME").unwrap_or_else(|_| "neutron-strategist".to_string());
     let service_name: &'static str = Box::leak(service_name.into_boxed_str());
 
     match env::var("OTLP_ENDPOINT") {
