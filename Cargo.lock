@@ -5315,7 +5315,7 @@ dependencies = [
  "serde",
  "sp1-sdk",
  "tokio",
- "toml",
+ "toml 0.9.5",
  "valence-account-utils",
  "valence-authorization-utils",
  "valence-clearing-queue-supervaults",
