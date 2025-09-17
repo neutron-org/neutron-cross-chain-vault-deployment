@@ -44,7 +44,7 @@ impl ValenceWorker for Strategy {
             ._0;
 
         if last_rr_update_time + min_rate_update_delay
-            > std::time::SystemTime::now()
+            <= std::time::SystemTime::now()
             .duration_since(std::time::SystemTime::UNIX_EPOCH)?
             .as_secs()
         {

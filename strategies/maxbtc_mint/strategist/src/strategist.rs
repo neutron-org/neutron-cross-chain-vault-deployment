@@ -48,7 +48,7 @@ impl ValenceWorker for Strategy {
             ._0;
 
         if last_rr_update_time + min_rate_update_delay
-            > std::time::SystemTime::now()
+            <= std::time::SystemTime::now()
                 .duration_since(std::time::SystemTime::UNIX_EPOCH)?
                 .as_secs()
         {
@@ -83,7 +83,7 @@ impl ValenceWorker for Strategy {
                 .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
                 .await?;
             info!("Vault unpaused");
-            
+
             // having processed all new exit requests after the deposit flow,
             // the epoch is ready to be concluded.
             // we perform the final accounting flow and post vault update.
