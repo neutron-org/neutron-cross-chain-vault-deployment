@@ -103,7 +103,7 @@ services:
   strategy-wbtc-maxbtc-mint-only:
     build: .
     container_name: strategy-wbtc-maxbtc-mint-only
-    command: start maxbtc_mit
+    command: start maxbtc_mint
     restart: always
     working_dir: /app
     environment:
