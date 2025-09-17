@@ -1,7 +1,7 @@
 rpc_url = "https://eth-mainnet.public.blastapi.io"
 max_rate_increment_bps = 200
 max_rate_decrement_bps = 200
-ibc_transfer_threshold_amt = "0x989680"
+ibc_transfer_threshold_amt = "0xAE62"
 rate_scaling_factor = "10000000000"
 authorizations = "0x35114566ea678ec14a70dbb0fc2f259578e33ed8"
 processor = "0xce9f8fe1bc963271e01abc453a8a1aa84781d13c"

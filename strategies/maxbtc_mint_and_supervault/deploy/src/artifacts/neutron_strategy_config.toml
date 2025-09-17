@@ -1,5 +1,5 @@
-grpc_url = "http://rpc.neutron.quokkastake.io"
-grpc_port = "9090"
+grpc_url = "http://grpc-xyphion.neutron-1.neutron.org"
+grpc_port = "80"
 chain_id = "neutron-1"
 maxbtc_contract = "neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5xp34"
 supervault_contract = "neutron1r8qcd94anqhrfzmjyppk45pew5kzedrxz8mgk82kmwadqyndvwtstp9yrn"
