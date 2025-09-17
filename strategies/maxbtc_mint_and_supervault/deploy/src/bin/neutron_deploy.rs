@@ -217,6 +217,8 @@ async fn main() -> anyhow::Result<()> {
 
     println!("Valence config: {:?}", config);
 
+    tokio::time::sleep(std::time::Duration::from_secs(10)).await;
+
     let instantiate_ica_ibc_transfer_msg = valence_library_utils::msg::InstantiateMsg::<
         valence_ica_ibc_transfer::msg::LibraryConfig,
     > {
@@ -235,6 +237,8 @@ async fn main() -> anyhow::Result<()> {
         )
         .await?;
     println!("ICA IBC Transfer library instantiated: {ica_ibc_transfer_library_address}");
+
+    tokio::time::sleep(std::time::Duration::from_secs(10)).await;
 
     // Instantiate the maxBTC issuer library
     let maxbtc_issuer_config = valence_maxbtc_issuer::msg::LibraryConfig {

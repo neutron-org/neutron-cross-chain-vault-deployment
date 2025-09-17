@@ -7,7 +7,7 @@ owner   = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Neutron multisig addres
 
 [vault]
 deposit_token            = "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599" # Should be updated to correct deposit token address (e.g. WBTC)
-strategist               = "0x0EDF77a1036598Da1C0Aab471066a0c4FFd099D1" # Address of the strategist
+strategist               = "0xD9e0F5220f365C50D1Ea67dbc633efB897ff28Ae" # Address of the strategist
 platform_fee_account     = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Receiver of the platform fees portion
 strategist_fee_account   = "0x0EDF77a1036598Da1C0Aab471066a0c4FFd099D1" # Receiver of the strategist fees portion
 strategist_fee_ratio_bps = 0                                            # Strategist fee is 50%, rest goes to the platform (50%)
@@ -25,10 +25,10 @@ cooperator               = "0x903c62fA7867025B51Ca8eb75B033F70c6D9720e" # Should
 
 [eureka_transfer]
 handler                    = "0xfc2d0487a0ae42ae7329a80dc269916a9184cf7c"
-recipient                  = "cosmos1umd8kdhe3yl4e8eyk7vepxc9nrst3fjm2ha4ydvm9gwddx0uevwq04zy52" # Eventual ICA address
+recipient                  = "cosmos1vcejm32vtmyg52vlvrat8lceqn7gwlp6ppqthmn425e98x8wpcsq054uxu" # Eventual ICA address
 source_client              = "cosmoshub-0"
 timeout                    = 43200                                      # 12 hours in seconds
 ibc_transfer_threshold_amt = 10000000
 
 [coprocessor_app]
-eureka_transfer_coprocessor_app_id = "80bb9d50a24d84a6acd068acf780862f9fee7bdf161789a06211c82ff533933c" # TBD after deployment
+eureka_transfer_coprocessor_app_id = "034fa746b046d24c5666e6eef9fd9e1ef43737a188c9b9c935d157b05f6efe16" # TBD after deployment

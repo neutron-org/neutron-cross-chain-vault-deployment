@@ -3,8 +3,8 @@ grpc_port = "80"
 chain_id = "neutron-1"
 maxbtc_contract = "neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5xp34"
 supervault_contract = "neutron1r8qcd94anqhrfzmjyppk45pew5kzedrxz8mgk82kmwadqyndvwtstp9yrn"
-authorizations = "neutron15uhy20x9u7v07enttt8qcrl9lfj7u7rdft5c4jnd43uhxuj74nls5wn34p"
-processor = "neutron1f2g8q7q8h3dahqlafp64d0wqaep7yka02fs0ztpl0cjucp77smkqftq7jp"
+authorizations = "neutron1tn6pumcljcfkryeng48xgux5v7r7ycczcs4acaxggyhjmy7n4kwshx74sf"
+processor = "neutron18llfa9ymc95282606nuwg3f2hxtplcak962vdxdx3s7av97e0gcs8yvshl"
 
 [denoms]
 deposit_token = "ibc/0E293A7622DC9A6439DB60E6D234B5AF446962E27CA3AB44D0590603DFF6968E"
@@ -13,16 +13,16 @@ maxbtc = "factory/neutron17sp75wng9vl2hu3sf4ky86d7smmk3wle9gkts2gmedn9x4ut3xcqa5
 supervault_lp = "factory/neutron1r8qcd94anqhrfzmjyppk45pew5kzedrxz8mgk82kmwadqyndvwtstp9yrn/BTC-BTC"
 
 [accounts]
-gaia_ica = "neutron1x86kjy9vparftx2nw22p2z4msylssj3pm9jgwfy4m2fxmdklf0csa7qpwg"
-ica_deposit = "neutron18y4a7ujfx7eq620w78cl0mdrpl323tuq63t26eg7357w096nypnsrah47v"
-supervault_deposit = "neutron1tgd6zx9qggham0nzd40fvesfwhwy8hj9mht68xn4jn7uzvdslv3qa3qwmt"
-settlement = "neutron19nj0ppy8hgvdydp8vyks8cczutlm7hjcpcaryx7ux277ew7kpn6q2t9yhj"
+gaia_ica = "neutron1jzhdfvclgcd7ywjnt6t348x5uugqwgrasc0uvsypz5psuj4fkz0q6nmfkh"
+ica_deposit = "neutron1ukfcr84xe78mtvl7w7le4fpwu79zc3k33mfeehc66qjltkyxp7rskq508u"
+supervault_deposit = "neutron1k30wa7gajrl3u005zvunttzw4pk0p7d0jdqepurh3cgw3tyqfhwstuxaj3"
+settlement = "neutron1qezkturmkpzrk5gr2k3vsdrw2l0lzhw6x6m6r0wsyntsxsu7k9msx56nu2"
 
 [libraries]
-maxbtc_issuer = "neutron1p0m0fs7psf0ts5yyucf4j04tyj8qs94zh87dxa357zcfjgwlefaqc93cl6"
-clearing_queue = "neutron1qzxuxfmfjzjqvkeu3tlftsw8ywxj57zvakdnwjw9t7ra5h4tky4qe5hflv"
-ica_transfer_gaia = "neutron17f2jk76ue49nesua9xz4hfvcj06lkk784934np9xn4vzsgkr2krqvq8yl8"
-supervault_lper = "neutron1hyn2kghgtuwp6a8f8jlevywdv8ydezy3nef2c3s7getrhtq48arqclh89d"
+maxbtc_issuer = "neutron1zrp8ra5904xns572yxjssms4ketgjqxpc6ln4x2ty77s0zg8057sjjk9xk"
+clearing_queue = "neutron1y6kfvfnqc7md8nplqul70f6gzvj68nz04j9506h79v35y5lrc0ds5h5gxl"
+ica_transfer_gaia = "neutron1t38phc5lfmaefn3xwzluvl8t5faf0gc93rppgf599cvu6y67xt7qjnkutg"
+supervault_lper = "neutron1va3a7rqstd6y8xgamx6nhav85800d3ftu8esht0wnhktma6pfznqmae9kr"
 
 [coprocessor_app_ids]
-clearing_queue = "8df0ca532a93a899bd22018578784050a2923e8bbf5cf82a96620a3a710b2a05"
+clearing_queue = "59580f14752c06fc6ce696109a842566372cf2e697ad6a7ab89d7b09be61a43b"
