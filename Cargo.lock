@@ -3184,6 +3184,7 @@ dependencies = [
  "alloy",
  "anyhow",
  "async-trait",
+ "cosmrs",
  "cosmwasm-std",
  "dotenv",
  "ebtc_maxbtc_types",

@@ -32,6 +32,7 @@ use valence_domain_clients::{
 };
 use valence_domain_clients::coprocessor::base_client::CoprocessorBaseClient;
 use valence_library_utils::OptionUpdate;
+use packages::utils::{check_transfer_lock, lock_transfer, unlock_transfer};
 
 impl Strategy {
     pub async fn deposit(&mut self, eth_rp: &CustomProvider) -> anyhow::Result<()> {
@@ -50,6 +51,40 @@ impl Strategy {
                 .await?
                 ._0;
             info!(target: DEPOSIT_PHASE, "eth deposit acc balance = {eth_deposit_acc_bal}");
+
+            if let Some(amount_to_wait_for) = check_transfer_lock(self.label.as_str(), "eth_gaia").await {
+                // block execution until the funds arrive to the Cosmos Hub ICA owned
+                // by the Valence Interchain Account on Neutron.
+                // poll for 15sec * 100 = 1500sec = 25min which should suffice for
+                // IBC Eureka routing time of 15min
+                self.gaia_client
+                    .poll_until_expected_balance(
+                        &self.cfg.gaia.ica_address,
+                        &self.cfg.gaia.deposit_denom,
+                        amount_to_wait_for.u128(),
+                        15,  // every 15 sec
+                        100, // for 100 times
+                    )
+                    .await?;
+
+                unlock_transfer(self.label.as_str(),"eth_gaia").await?;
+            }
+
+            if let Some(amount_to_wait_for) = check_transfer_lock(self.label.as_str(), "gaia_neutron").await {
+                // block execution until funds arrive to the Neutron program deposit
+                // account
+                self.neutron_client
+                    .poll_until_expected_balance(
+                        &self.cfg.neutron.accounts.deposit,
+                        &self.cfg.neutron.denoms.deposit_token,
+                        amount_to_wait_for.u128(),
+                        5,
+                        30,
+                    )
+                    .await?;
+
+                unlock_transfer(self.label.as_str(), "gaia_neutron").await?;
+            }
 
             // validate that the deposit account balance exceeds the eureka routing
             // threshold amount
@@ -135,6 +170,10 @@ impl Strategy {
             }
         };
 
+        let post_fee_amount_out_u128 = utils::skip::get_amount_out(&skip_api_response)?;
+        info!(target: DEPOSIT_PHASE, "post_fee_amount_out_u128 = {post_fee_amount_out_u128:?}" );
+
+
         // format the response in format expected by the coprocessor and post it
         // there for proof
         let coprocessor_input = json!({"skip_response": skip_api_response});
@@ -170,6 +209,8 @@ impl Strategy {
             .get_transaction_receipt(zk_auth_exec_response.transaction_hash)
             .await?;
 
+        lock_transfer(self.label.as_str(), "eth_gaia", post_fee_amount_out_u128).await?;
+
         // block execution until the funds arrive to the Cosmos Hub ICA owned
         // by the Valence Interchain Account on Neutron.
         // we poll
@@ -192,6 +233,9 @@ impl Strategy {
                 100, // for 100 times
             )
             .await?;
+
+        unlock_transfer(self.label.as_str(), "eth_gaia").await?;
+
         Ok(())
     }
 
@@ -260,6 +304,8 @@ impl Strategy {
         info!(target: DEPOSIT_PHASE, "tick: update & transfer");
         valence_core::tick_neutron(&self.neutron_client, &self.cfg.neutron.processor).await?;
 
+        lock_transfer(self.label.as_str(), "gaia_neutron", gaia_ica_bal).await?;
+
         info!(target: DEPOSIT_PHASE, "polling for neutron deposit account to receive the funds");
 
         // block execution until funds arrive to the Neutron program deposit
@@ -274,6 +320,8 @@ impl Strategy {
             )
             .await?;
 
+        unlock_transfer(self.label.as_str(), "gaia_neutron").await?;
+        
         Ok(())
     }
 }
