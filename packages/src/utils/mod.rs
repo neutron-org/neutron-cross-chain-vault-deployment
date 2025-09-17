@@ -34,6 +34,7 @@ pub async fn wait_for_block_to_finalize(block_number: u64, eth_rp: &CustomProvid
         info!("Waiting for block {} to be finalized...", block_number);
         if let Some(block) = eth_rp.get_block(BlockId::Number(Finalized), BlockTransactionsKind::Hashes).await? {
             if block.header.number >= block_number {
+                sleep(std::time::Duration::from_secs(60)).await;
                 return Ok(());
             }
         }

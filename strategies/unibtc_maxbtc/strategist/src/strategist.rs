@@ -51,11 +51,11 @@ impl ValenceWorker for Strategy {
             info!("Rate update required");
 
             info!("Pausing vault...");
-            let pause_request = one_way_vault_contract.pause().into_transaction_request();
-            let pause_vault_exec_response = self.eth_client.sign_and_send(pause_request).await?;
-            eth_rp
-                .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
-                .await?;
+            // let pause_request = one_way_vault_contract.pause().into_transaction_request();
+            // let pause_vault_exec_response = self.eth_client.sign_and_send(pause_request).await?;
+            // eth_rp
+            //     .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
+            //     .await?;
             info!("Vault paused");
 
             let last_block_after_pause = self.eth_client.latest_block_height().await?;
@@ -72,18 +72,18 @@ impl ValenceWorker for Strategy {
             // carry out the settlements
             self.settlement().await?;
 
+            info!("Unpausing vault...");
+            let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
+            let unpause_vault_exec_response = self.eth_client.sign_and_send(unpause_request).await?;
+            eth_rp
+                .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
+                .await?;
+            info!("Vault unpaused");
+
             // having processed all new exit requests after the deposit flow,
             // the epoch is ready to be concluded.
             // we perform the final accounting flow and post vault update.
             self.update(&eth_rp).await?;
-
-            info!("Unpausing vault...");
-            let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
-            let pause_vault_exec_response = self.eth_client.sign_and_send(unpause_request).await?;
-            eth_rp
-                .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
-                .await?;
-            info!("Vault unpaused");
         } else {
             info!("Rate update not required");
             // first we carry out the deposit flow
