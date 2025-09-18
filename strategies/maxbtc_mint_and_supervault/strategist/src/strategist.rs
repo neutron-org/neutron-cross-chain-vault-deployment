@@ -66,8 +66,8 @@ impl ValenceWorker for Strategy {
 
             // wait_for_block_to_finalize(last_block_after_pause, &eth_rp).await?;
 
-            // // first we carry out the deposit flow
-            // self.deposit(&eth_rp).await?;
+            // first we carry out the deposit flow
+            self.deposit(&eth_rp).await?;
 
             // // after deposit flow is complete, we process the new obligations
             // self.register_withdraw_obligations().await?;
