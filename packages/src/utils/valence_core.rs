@@ -171,16 +171,16 @@ pub async fn validate_new_redemption_rate(
             info!(target: UPDATE_PHASE, "redemption rate epoch delta = -{rate_delta}");
             let decrement_threshold = Decimal::bps(max_rate_decrement_bps);
             if rate_delta > decrement_threshold {
-                // warn!(target: UPDATE_PHASE, "rate delta exceeds the threshold of {decrement_threshold}; pausing the vault");
-                // let pause_request = one_way_vault_contract.pause().into_transaction_request();
-                // let pause_vault_exec_response = client.sign_and_send(pause_request).await?;
-                // eth_rp
-                //     .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
-                //     .await?;
+                warn!(target: UPDATE_PHASE, "rate delta exceeds the threshold of {decrement_threshold}; pausing the vault");
+                let pause_request = one_way_vault_contract.pause().into_transaction_request();
+                let pause_vault_exec_response = client.sign_and_send(pause_request).await?;
+                eth_rp
+                    .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
+                    .await?;
 
-                // return Err(anyhow!(
-                //     "newly calculated rate exceeds the rate update thresholds"
-                // ));
+                return Err(anyhow!(
+                    "newly calculated rate exceeds the rate update thresholds"
+                ));
             }
         }
         // rate change is exactly 1.0 -> redemption rate did not change
@@ -193,16 +193,16 @@ pub async fn validate_new_redemption_rate(
             info!(target: UPDATE_PHASE, "redemption rate epoch delta = +{rate_delta}");
             let increment_threshold = Decimal::bps(max_rate_increment_bps);
             if rate_delta > increment_threshold {
-                // warn!(target: UPDATE_PHASE, "rate delta exceeds the threshold of {increment_threshold}; pausing the vault");
-                // let pause_request = one_way_vault_contract.pause().into_transaction_request();
-                // let pause_vault_exec_response = client.sign_and_send(pause_request).await?;
-                // eth_rp
-                //     .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
-                //     .await?;
+                warn!(target: UPDATE_PHASE, "rate delta exceeds the threshold of {increment_threshold}; pausing the vault");
+                let pause_request = one_way_vault_contract.pause().into_transaction_request();
+                let pause_vault_exec_response = client.sign_and_send(pause_request).await?;
+                eth_rp
+                    .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
+                    .await?;
 
-                // return Err(anyhow!(
-                //     "newly calculated rate exceeds the rate update thresholds"
-                // ));
+                return Err(anyhow!(
+                    "newly calculated rate exceeds the rate update thresholds"
+                ));
             }
         }
     }

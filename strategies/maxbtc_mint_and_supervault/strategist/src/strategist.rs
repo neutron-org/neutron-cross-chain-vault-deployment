@@ -54,36 +54,36 @@ impl ValenceWorker for Strategy {
         {
             info!("Rate update required");
 
-            // info!("Pausing vault...");
-            // let pause_request = one_way_vault_contract.pause().into_transaction_request();
-            // let pause_vault_exec_response = self.eth_client.sign_and_send(pause_request).await?;
-            // eth_rp
-            //     .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
-            //     .await?;
-            // info!("Vault paused");
+            info!("Pausing vault...");
+            let pause_request = one_way_vault_contract.pause().into_transaction_request();
+            let pause_vault_exec_response = self.eth_client.sign_and_send(pause_request).await?;
+            eth_rp
+                .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
+                .await?;
+            info!("Vault paused");
 
-            // let last_block_after_pause = self.eth_client.latest_block_height().await?;
+            let last_block_after_pause = self.eth_client.latest_block_height().await?;
 
-            // wait_for_block_to_finalize(last_block_after_pause, &eth_rp).await?;
+            wait_for_block_to_finalize(last_block_after_pause, &eth_rp).await?;
 
             // first we carry out the deposit flow
             self.deposit(&eth_rp).await?;
 
-            // // after deposit flow is complete, we process the new obligations
-            // self.register_withdraw_obligations().await?;
+            // after deposit flow is complete, we process the new obligations
+            self.register_withdraw_obligations().await?;
 
-            // // with new obligations registered into the clearing queue, we
-            // // carry out the settlements
-            // self.settlement().await?;
+            // with new obligations registered into the clearing queue, we
+            // carry out the settlements
+            self.settlement().await?;
 
-            // info!("Unpausing vault...");
-            // let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
-            // let unpause_vault_exec_response =
-            //     self.eth_client.sign_and_send(unpause_request).await?;
-            // eth_rp
-            //     .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
-            //     .await?;
-            // info!("Vault unpaused");
+            info!("Unpausing vault...");
+            let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
+            let unpause_vault_exec_response =
+                self.eth_client.sign_and_send(unpause_request).await?;
+            eth_rp
+                .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
+                .await?;
+            info!("Vault unpaused");
 
             // having processed all new exit requests after the deposit flow,
             // the epoch is ready to be concluded.
