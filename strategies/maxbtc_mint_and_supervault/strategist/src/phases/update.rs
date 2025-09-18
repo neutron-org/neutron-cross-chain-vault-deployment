@@ -69,11 +69,11 @@ impl Strategy {
             .update(redemption_rate_sol_u256)
             .into_transaction_request();
 
-        let update_vault_exec_response = self.eth_client.sign_and_send(update_request).await?;
+        // let update_vault_exec_response = self.eth_client.sign_and_send(update_request).await?;
 
-        eth_rp
-            .get_transaction_receipt(update_vault_exec_response.transaction_hash)
-            .await?;
+        // eth_rp
+        //     .get_transaction_receipt(update_vault_exec_response.transaction_hash)
+        //     .await?;
 
         Ok(())
     }
@@ -165,10 +165,10 @@ impl Strategy {
 
         // Calculate the final amount of maxBTC to be minted after fees and exchange rate conversion
         let mut deposit_token_balance_total_in_maxbtc = dec_to_amount(
-            Decimal::from_atomics(deposit_token_balance_total, 8)?
-                / current_maxbtc_exchange_rate,
+            Decimal::from_atomics(deposit_token_balance_total, 8)? / current_maxbtc_exchange_rate,
             8,
-        )?.u128();
+        )?
+        .u128();
 
         let supervaults_tvl = utils::supervaults::query_supervault_tvl_expressed_in_denom(
             &self.neutron_client,
