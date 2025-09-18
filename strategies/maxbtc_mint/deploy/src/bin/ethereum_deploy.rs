@@ -15,7 +15,6 @@ use packages::types::{
     sol_types::{
         Authorization, BaseAccount, ERC1967Proxy, IBCEurekaTransfer, IBCEurekaTransferConfig,
         KYCOneWayVault::{self, FeeDistributionConfig, KYCOneWayVaultConfig},
-        Wrapper as WrapperContract,
         processor_contract::LiteProcessor,
     },
 };
@@ -28,16 +27,9 @@ use valence_domain_clients::{
 #[derive(Deserialize, Debug)]
 struct Parameters {
     general: General,
-    wrapper: Wrapper,
     vault: Vault,
     eureka_transfer: EurekaTransfer,
     coprocessor_app: EurekaTransferCoprocessorApp,
-}
-
-#[derive(Deserialize, Debug)]
-struct Wrapper {
-    zk_me: Address,
-    cooperator: Address,
 }
 
 #[derive(Deserialize, Debug)]
@@ -62,6 +54,8 @@ struct Vault {
     starting_rate: U256,
     min_rate_update_delay: u64,
     max_rate_update_delay: u64,
+    zk_me: Address,
+    cooperator: Address,
 }
 
 #[tokio::main]
@@ -94,31 +88,6 @@ async fn main() -> anyhow::Result<()> {
         .contract_address
         .unwrap();
     println!("Deposit account deployed at: {deposit_account}");
-
-    let wrapper_implementation_tx = WrapperContract::deploy_builder(&rp).into_transaction_request();
-
-    let wrapper_implementation = eth_client
-        .sign_and_send(wrapper_implementation_tx)
-        .await?
-        .contract_address
-        .unwrap();
-
-    let wrapper_proxy_tx = ERC1967Proxy::deploy_builder(&rp, wrapper_implementation, Bytes::new())
-        .into_transaction_request();
-
-    let wrapper_proxy = eth_client
-        .sign_and_send(wrapper_proxy_tx)
-        .await?
-        .contract_address
-        .unwrap();
-
-    println!("Wrapper deployed at: {wrapper_proxy}");
-
-    let wrapper = WrapperContract::new(wrapper_proxy, &rp);
-
-    let wrapper_initialize_tx = wrapper.initialize(my_address).into_transaction_request();
-    eth_client.sign_and_send(wrapper_initialize_tx).await?;
-    println!("Wrapper initialized!");
 
     let fee_distribution_config = FeeDistributionConfig {
         strategistAccount: parameters.vault.strategist_fee_account,
@@ -162,35 +131,25 @@ async fn main() -> anyhow::Result<()> {
 
     let vault_initialize_tx = vault
         .initialize(
-            parameters.general.owner,
+            my_address, // // We will be initial owners to eventually configure KYC, then we need to transfer ownership
             kyc_one_way_vault_config.abi_encode().into(),
             parameters.vault.deposit_token,
             "Neutron-XChain-Vault".to_string(), // vault token name
             "nVault".to_string(),               // vault token symbol
             parameters.vault.starting_rate,
-            wrapper_proxy,
         )
         .into_transaction_request();
     eth_client.sign_and_send(vault_initialize_tx).await?;
     println!("Vault initialized");
 
-    let configure_wrapper_tx = wrapper
-        .setConfig(
-            vault_proxy,
-            parameters.wrapper.zk_me,
-            parameters.wrapper.cooperator,
-        )
-        .into_transaction_request();
-    eth_client.sign_and_send(configure_wrapper_tx).await?;
-    println!("Wrapper configured");
+    // Wait until vault really is initilized
+    eth_client.blocking_query(vault.owner(), |resp|(resp._0 == my_address), 10, 10).await?;
 
-    let transfer_wrapper_ownership_tx = wrapper
-        .transferOwnership(parameters.general.owner)
+    let vault_kyc_configure_tx = vault
+        .updateZkMeConfig(parameters.vault.zk_me, parameters.vault.cooperator)
         .into_transaction_request();
-    eth_client
-        .sign_and_send(transfer_wrapper_ownership_tx)
-        .await?;
-    println!("Wrapper ownership transferred");
+    eth_client.sign_and_send(vault_kyc_configure_tx).await?;
+    println!("Vault KYC configured");
 
     let processor =
         LiteProcessor::deploy_builder(&rp, FixedBytes::<32>::default(), Address::ZERO, 0, vec![])
@@ -271,6 +230,17 @@ async fn main() -> anyhow::Result<()> {
     println!("Deposit account ownership transferred to: {new_owner}");
     assert_eq!(new_owner, parameters.general.owner);
 
+    // Transfer ownership of the KYC vault to the owner
+    let transfer_ownership_tx = vault
+        .transferOwnership(parameters.general.owner)
+        .into_transaction_request();
+    eth_client.sign_and_send(transfer_ownership_tx).await?;
+
+    // Query to verify the ownership was transferred
+    let new_owner = vault.owner().call().await?._0;
+    println!("KYC vault ownership transferred to: {new_owner}");
+    assert_eq!(new_owner, parameters.general.owner);
+
     // Create the Ethereum Strategy Config
     let denoms = EthereumDenoms {
         deposit_token: parameters.vault.deposit_token,
@@ -281,7 +251,6 @@ async fn main() -> anyhow::Result<()> {
     };
 
     let libraries = EthereumLibraries {
-        wrapper: wrapper_proxy,
         one_way_vault: vault_proxy,
         eureka_transfer,
     };
