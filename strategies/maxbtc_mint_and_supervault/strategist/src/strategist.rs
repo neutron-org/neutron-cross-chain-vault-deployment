@@ -86,10 +86,6 @@ impl ValenceWorker for Strategy {
             // carry out the settlements
             self.settlement().await?;
 
-            // having processed all new exit requests after the deposit flow,
-            // the epoch is ready to be concluded.
-            // we perform the final accounting flow and post vault update.
-            self.update(&eth_rp).await?;
             info!("Unpausing vault...");
             let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
             let unpause_vault_exec_response =
@@ -98,6 +94,11 @@ impl ValenceWorker for Strategy {
                 .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
                 .await?;
             info!("Vault unpaused");
+
+            // having processed all new exit requests after the deposit flow,
+            // the epoch is ready to be concluded.
+            // we perform the final accounting flow and post vault update.
+            self.update(&eth_rp).await?;
         } else {
             info!("Rate update not required");
             // first we carry out the deposit flow
