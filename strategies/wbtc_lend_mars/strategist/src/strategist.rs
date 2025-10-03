@@ -1,16 +1,16 @@
-use crate::strategy_config::Strategy;
+use std::error::Error;
 use alloy::providers::Provider;
 use async_trait::async_trait;
 use log::info;
 use packages::phases::VALENCE_WORKER;
-use packages::types::sol_types::OneWayVault;
-use packages::utils::wait_for_block_to_finalize;
-use std::error::Error;
-use valence_domain_clients::evm::base_client::EvmBaseClient;
 use valence_domain_clients::evm::{
     base_client::CustomProvider, request_provider_client::RequestProviderClient,
 };
+use valence_domain_clients::evm::base_client::EvmBaseClient;
 use valence_strategist_utils::worker::ValenceWorker;
+use packages::types::sol_types::OneWayVault;
+use packages::utils::wait_for_block_to_finalize;
+use crate::strategy_config::Strategy;
 
 // implement the ValenceWorker trait for the Strategy struct.
 // This trait defines the main loop of the strategy and inherits
@@ -45,21 +45,15 @@ impl ValenceWorker for Strategy {
 
         if last_rr_update_time + min_rate_update_delay
             <= std::time::SystemTime::now()
-                .duration_since(std::time::SystemTime::UNIX_EPOCH)?
-                .as_secs()
+            .duration_since(std::time::SystemTime::UNIX_EPOCH)?
+            .as_secs()
         {
             info!("Rate update required");
 
-            if !self
-                .eth_client
-                .query(one_way_vault_contract.vaultState())
-                .await?
-                .paused
-            {
+            if !self.eth_client.query(one_way_vault_contract.vaultState()).await?.paused {
                 info!("Pausing vault...");
                 let pause_request = one_way_vault_contract.pause().into_transaction_request();
-                let pause_vault_exec_response =
-                    self.eth_client.sign_and_send(pause_request).await?;
+                let pause_vault_exec_response = self.eth_client.sign_and_send(pause_request).await?;
                 eth_rp
                     .get_transaction_receipt(pause_vault_exec_response.transaction_hash)
                     .await?;
@@ -82,18 +76,18 @@ impl ValenceWorker for Strategy {
             // carry out the settlements
             self.settlement().await?;
 
-            // having processed all new exit requests after the deposit flow,
-            // the epoch is ready to be concluded.
-            // we perform the final accounting flow and post vault update.
-            self.update(&eth_rp).await?;
             info!("Unpausing vault...");
             let unpause_request = one_way_vault_contract.unpause().into_transaction_request();
-            let unpause_vault_exec_response =
-                self.eth_client.sign_and_send(unpause_request).await?;
+            let unpause_vault_exec_response = self.eth_client.sign_and_send(unpause_request).await?;
             eth_rp
                 .get_transaction_receipt(unpause_vault_exec_response.transaction_hash)
                 .await?;
             info!("Vault unpaused");
+
+            // having processed all new exit requests after the deposit flow,
+            // the epoch is ready to be concluded.
+            // we perform the final accounting flow and post vault update.
+            self.update(&eth_rp).await?;
         } else {
             info!("Rate update not required");
             // first we carry out the deposit flow
