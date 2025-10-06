@@ -1,0 +1,113 @@
+version: "3.9"
+
+services:
+  strategy-usdc-maxbtc:
+    build: .
+    container_name: strategy-usdc
+    command: start usdc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-usdc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-unibtc:
+    build: .
+    container_name: strategy-wbtc-unibtc
+    command: start wbtc_unibtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-unibtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-solvbtc:
+    build: .
+    container_name: strategy-wbtc-solvbtc
+    command: start wbtc_solvbtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-solvbtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-ebtc:
+    build: .
+    container_name: strategy-wbtc-ebtc
+    command: start wbtc_ebtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-ebtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-solvbtc-maxbtc:
+    build: .
+    container_name: strategy-solvbtc-maxbtc
+    command: start solvbtc_maxbtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-solvbtc-maxbtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-unibtc-maxbtc:
+    build: .
+    container_name: strategy-unibtc-maxbtc
+    command: start unibtc_maxbtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-unibtc-maxbtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-ebtc-maxbtc:
+    build: .
+    container_name: strategy-ebtc-maxbtc
+    command: start ebtc_maxbtc
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-ebtc-maxbtc
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-lend-amber:
+    build: .
+    container_name: strategy-wbtc-lend-amber
+    command: start wbtc_lend
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-lend-amber
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-lend-mars:
+    build: .
+    container_name: strategy-wbtc-lend-mars
+    command: start wbtc_lend_mars
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-lend-mars
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  strategy-wbtc-maxbtc-mint-only:
+    build: .
+    container_name: strategy-wbtc-maxbtc-mint-only
+    command: start maxbtc_mint
+    restart: always
+    working_dir: /app
+    environment:
+      - RUST_LOG=info
+      - SERVICE_NAME=strategy-wbtc-maxbtc-mint-only
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

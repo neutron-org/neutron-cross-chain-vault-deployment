@@ -1,0 +1,29 @@
+[general]
+rpc_url = "https://eth-mainnet.public.blastapi.io"
+owner   = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Neutron multisig address
+
+[vault]
+deposit_token            = "0x657e8c867d8b37dcc18fa4caead9c45eb088c642" # eBTC
+strategist               = "0xb264Ab79C9E51d44baB78Da302863Ef5B45Fa321" # Address of the strategist
+platform_fee_account     = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Receiver of the platform fees portion
+strategist_fee_account   = "0xb264Ab79C9E51d44baB78Da302863Ef5B45Fa321" # Receiver of the strategist fees portion
+strategist_fee_ratio_bps = 0                                         # Strategist fee is 50%, rest goes to the platform (50%)
+scaling_factor           = "10000000000"                                # scaling factor for rate updates
+deposit_cap              = "5000000000"                             # 50 eBTC
+deposit_fee_bps          = 3                                          # 0.03% deposit fee
+withdraw_fee_bps         = 2                                          # 0.02% withdraw fee
+max_rate_increment_bps   = 200                                         # 2% maximum rate increment per update
+max_rate_decrement_bps   = 200                                         # 2% maximum rate decrement per update
+starting_rate            = "100000000"                                  # 1e8 - bitcoin LST precision - 8 decimals
+min_rate_update_delay    = 14400                                          # 4 hours - Minimum delay for rate updates - for testing purposes
+max_rate_update_delay    = 129600                                       # 36 hours in seconds - Maximum delay for rate updates before vault gets paused
+
+[eureka_transfer]
+handler                    = "0xfc2d0487a0ae42ae7329a80dc269916a9184cf7c"
+recipient                  = "cosmos1ft3n3kh4y40mz8sgpgwul5lf88857xwttpa20ushgv4uuqglupdqf8fqrn" # Eventual ICA address
+source_client              = "cosmoshub-0"
+timeout                    = 43200                                        # 12 hours in seconds
+ibc_transfer_threshold_amt = 1100000000                                   # $10000 in uniBTC
+
+[coprocessor_app]
+eureka_transfer_coprocessor_app_id = "17c67b97659e6538edb1a17550fc85bac7f7081fb9a5266f20564eecd6a4aaf6" # TBD after deployment

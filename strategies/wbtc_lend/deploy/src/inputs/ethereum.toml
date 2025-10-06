@@ -1,17 +1,17 @@
 [general]
 rpc_url = "https://eth-mainnet.public.blastapi.io"
-owner   = "0xF4be64577425b84aE62EdF38b4b695771a1d6538" # Neutron multisig address
+owner   = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Neutron multisig address
 
 [vault]
 deposit_token            = "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599"
-strategist               = "0xF4be64577425b84aE62EdF38b4b695771a1d6538" # Address of the strategist
-platform_fee_account     = "0xF4be64577425b84aE62EdF38b4b695771a1d6538" # Receiver of the platform fees portion
-strategist_fee_account   = "0xF4be64577425b84aE62EdF38b4b695771a1d6538" # Receiver of the strategist fees portion
+strategist               = "0x15B0a7d6dbbE08F8A6a1a9540582B27c1E294118" # Address of the strategist
+platform_fee_account     = "0x54a37ac81263C482D6BE56F5Bd796e06e9Afa344" # Receiver of the platform fees portion
+strategist_fee_account   = "0x15B0a7d6dbbE08F8A6a1a9540582B27c1E294118" # Receiver of the strategist fees portion
 strategist_fee_ratio_bps = 0                                            # Strategist fee is 50%, rest goes to the platform (50%)
 scaling_factor           = "10000000000"                                # scaling factor for rate updates
 deposit_cap              = "50000000000"                                # 500 BTC
-deposit_fee_bps          = 2                                            # 0.025% deposit fee
-withdraw_fee_bps         = 2                                            # 0.025% withdraw fee
+deposit_fee_bps          = 3                                            # 0.03% deposit fee
+withdraw_fee_bps         = 2                                            # 0.02% withdraw fee
 max_rate_increment_bps   = 100                                          # 20% maximum rate increment per update
 max_rate_decrement_bps   = 100                                          # 20% maximum rate decrement per update
 starting_rate            = "100000000"                                  # 1e8 - WBTC Precision - 8 decimals
@@ -20,10 +20,10 @@ max_rate_update_delay    = 129600                                       # 36 hou
 
 [eureka_transfer]
 handler                    = "0xfc2d0487a0ae42ae7329a80dc269916a9184cf7c"
-recipient                  = "cosmos1frq8px66kplgp23fxzgpzeg3xf802nt72r2svjsnnq0x0zav72yq58vy5x"
+recipient                  = "cosmos1cfrnnl9a4sxwhleler8q64v8z8zfgduan98fn0s4spe7eu4felnsnydamw"
 source_client              = "cosmoshub-0"
 timeout                    = 43200                                                               # 12 hours in seconds
-ibc_transfer_threshold_amt = 8928571
+ibc_transfer_threshold_amt = 1080000000
 
 [coprocessor_app]
-eureka_transfer_coprocessor_app_id = "340245338d1b4987580f557935fb8e11e7a998f734603b57eef269b1b08b0b47" # TBD after we have the app deployed
+eureka_transfer_coprocessor_app_id = "afb73d04d98741b4a9b4798a20fcd332329c6c1d6defcc180e5f5a43000691d9" # TBD after we have the app deployed

@@ -1,0 +1,6 @@
+grpc_url = "http://cosmos-grpc.polkachu.com"
+grpc_port = "14990"
+chain_id = "cosmoshub-4"
+chain_denom = "uatom"
+deposit_denom = "ibc/9EE1F80BA2AE01138A40D656BBB42D11B1720000D6F64FC5988E412B6EDB4F71"
+ica_address = "cosmos12w0g800r80gynq0rmfsr5ksy99eezdaztzq9p669j65jkgyn63nslwuxd7"
